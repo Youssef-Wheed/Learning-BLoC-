@@ -15,8 +15,5 @@ class CharacterCubit extends Cubit<CharacterState> {
       this.characters = characters;
     });
     return characters;
-
-
-
   }
 }

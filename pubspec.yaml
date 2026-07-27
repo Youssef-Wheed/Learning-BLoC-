@@ -37,6 +37,7 @@ dependencies:
   dio: ^5.10.0
   bloc: ^9.2.1
   flutter_offline: ^6.0.0
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:
