@@ -48,7 +48,21 @@ class _CharactersScreenState extends State<CharactersScreen> {
     );
   }
 
-
+  // Widget (Function) UI core for GridView
+  Widget buildCharactersList() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 2 / 3,
+        crossAxisSpacing: 1,
+        mainAxisSpacing: 1,
+      ),
+      itemBuilder: (context, index) {
+        // TODO : not done
+        return CharacterItem();
+      },
+    );
+  }
 
 
   Widget build(BuildContext context) {
