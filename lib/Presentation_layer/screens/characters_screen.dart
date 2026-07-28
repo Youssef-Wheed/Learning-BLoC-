@@ -57,6 +57,10 @@ class _CharactersScreenState extends State<CharactersScreen> {
         crossAxisSpacing: 1,
         mainAxisSpacing: 1,
       ),
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
+      padding: EdgeInsets.zero,
+
       itemBuilder: (context, index) {
         // TODO : not done
         return CharacterItem();
