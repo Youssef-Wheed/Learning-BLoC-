@@ -17,6 +17,12 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor:MyColors.myYellow,
+        title: Text('Characters',style: TextStyle(
+          color: MyColors.myGray,
+        ),),
+      ),
       body: Container(
         child: Text("State 200"),
       ),
