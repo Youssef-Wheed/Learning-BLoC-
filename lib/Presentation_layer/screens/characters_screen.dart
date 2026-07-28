@@ -73,9 +73,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
           color: MyColors.myGray,
         ),),
       ),
-      body: Container(
-        child: Text("State 200"),
-      ),
+      body: buildBlocWidget(),
     );
   }
 }
