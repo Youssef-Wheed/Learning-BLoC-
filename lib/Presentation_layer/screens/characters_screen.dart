@@ -21,7 +21,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return BlocBuilder<CharacterCubit, CharacterState>(
       builder: (context, state) {
         if (state is CharactersLoaded) {
-          allCharacters = (state.characters);
+          allCharacters = (state).characters;
           return buildLoadedListWidgets();
         } else {
           return showLoadingIndicator();
