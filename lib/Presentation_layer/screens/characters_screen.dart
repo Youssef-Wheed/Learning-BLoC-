@@ -29,6 +29,16 @@ class _CharactersScreenState extends State<CharactersScreen> {
       },
     );
   }
+  // Widget  UI for GridView return CircularProgressIndicator
+  Widget showLoadingIndicator(){
+    return Center(
+      child: CircularProgressIndicator(
+        color: MyColors.myYellow,
+      ) ,
+    );
+  }
+
+
 
   Widget build(BuildContext context) {
     return Scaffold(
