@@ -38,6 +38,17 @@ class _CharactersScreenState extends State<CharactersScreen> {
     );
   }
 
+  // Widget (Function) UI for GridView return to buildBlocWidget() function
+  Widget buildLoadedListWidgets() {
+    return SingleChildScrollView(
+      child: Container(
+        color: MyColors.myGray,
+        child: Column(children: [buildCharactersList()]),
+      ),
+    );
+  }
+
+
 
 
   Widget build(BuildContext context) {
