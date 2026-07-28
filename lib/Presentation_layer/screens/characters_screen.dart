@@ -15,6 +15,21 @@ class _CharactersScreenState extends State<CharactersScreen> {
     super.initState();
     allCharacters = BlocProvider.of<CharacterCubit>(context).getAllCharacters();
   }
+
+  // run Bloc with BlocBuilder
+  Widget buildBlocWidget() {
+    return BlocBuilder<CharacterCubit, CharacterState>(
+      builder: (context, state) {
+        if (state is CharactersLoaded) {
+          allCharacters = (state.characters);
+          return buildLoadedListWidgets();
+        } else {
+          return showLoadingIndicator();
+        }
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
