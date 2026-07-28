@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CharactersScreen extends StatelessWidget {
+class CharactersScreen extends StatefulWidget {
   const CharactersScreen({super.key});
 
   @override
