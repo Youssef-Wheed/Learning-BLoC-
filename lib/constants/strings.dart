@@ -1,3 +1,3 @@
-final baseUrl = 'https://rickandmortyapi.com/web_services';
+final baseUrl = 'https://hp-api.onrender.com/api/';
 const characterScreen = '/';
 const characterDetailsScreen = '/character_details';

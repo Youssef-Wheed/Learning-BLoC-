@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learn_bloc/Presentation_layer/widget/character_item.dart';
+import '../../business_logic/cubit/character_cubit.dart';
+import '../../constants/myColors.dart';
+import '../../data/models/character.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({super.key});
@@ -8,48 +13,45 @@ class CharactersScreen extends StatefulWidget {
 }
 
 class _CharactersScreenState extends State<CharactersScreen> {
- late List<Character> allCharacters;
   @override
-
-  void initState(){
+  void initState() {
     super.initState();
-    allCharacters = BlocProvider.of<CharacterCubit>(context).getAllCharacters();
+    BlocProvider.of<CharacterCubit>(context).getAllCharacters();
   }
 
-  // run Bloc with BlocBuilder
   Widget buildBlocWidget() {
     return BlocBuilder<CharacterCubit, CharacterState>(
       builder: (context, state) {
         if (state is CharactersLoaded) {
-          allCharacters = (state).characters;
-          return buildLoadedListWidgets();
+          return buildLoadedListWidgets(state.characters);
+        } else if (state is CharactersError) {
+          return Center(
+            child: Text(
+              'حصل خطأ: ${state.message}',
+              style: TextStyle(color: Colors.red),
+            ),
+          );
         } else {
           return showLoadingIndicator();
         }
       },
     );
   }
-  // Widget  UI for GridView return CircularProgressIndicator
-  Widget showLoadingIndicator(){
-    return Center(
-      child: CircularProgressIndicator(
-        color: MyColors.myYellow,
-      ) ,
-    );
+
+  Widget showLoadingIndicator() {
+    return Center(child: CircularProgressIndicator(color: MyColors.myYellow));
   }
 
-  // Widget (Function) UI for GridView return to buildBlocWidget() function
-  Widget buildLoadedListWidgets() {
+  Widget buildLoadedListWidgets(List<Character> allCharacters) {
     return SingleChildScrollView(
       child: Container(
         color: MyColors.myGray,
-        child: Column(children: [buildCharactersList()]),
+        child: Column(children: [buildCharactersList(allCharacters)]),
       ),
     );
   }
 
-  // Widget (Function) UI core for GridView
-  Widget buildCharactersList() {
+  Widget buildCharactersList(List<Character> allCharacters) {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -60,22 +62,19 @@ class _CharactersScreenState extends State<CharactersScreen> {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       padding: EdgeInsets.zero,
-
+      itemCount: allCharacters.length,
       itemBuilder: (context, index) {
-        // TODO : not done
-        return CharacterItem();
+        return CharacterItem(character: allCharacters[index]);
       },
     );
   }
 
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:MyColors.myYellow,
-        title: Text('Characters',style: TextStyle(
-          color: MyColors.myGray,
-        ),),
+        backgroundColor: MyColors.myYellow,
+        title: Text('Characters', style: TextStyle(color: MyColors.myGray)),
       ),
       body: buildBlocWidget(),
     );

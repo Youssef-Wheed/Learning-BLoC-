@@ -5,8 +5,14 @@ sealed class CharacterState {}
 
 final class CharacterInitial extends CharacterState {}
 
-// data loaded
+class CharactersLoading extends CharacterState {}
+
 class CharactersLoaded extends CharacterState {
-  final List<Character> characters ;
+  final List<Character> characters;
   CharactersLoaded(this.characters);
+}
+
+class CharactersError extends CharacterState {
+  final String message;
+  CharactersError(this.message);
 }
